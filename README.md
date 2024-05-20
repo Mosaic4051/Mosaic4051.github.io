@@ -117,6 +117,74 @@ seq_sum = SequenceSum(a, n)
 print("Sum of the sequence:", seq_sum.sum_sequence())
     </pre>
 
+ <p>
+        二、作品名称：计算奇数分之一序列前n项和，难度**<br>
+        数列描述：<br>
+        计算序列 1 + 1/3 + 1/5 + ... 的前N项之和。<br>
+        题目来源：浙大版《Python 程序设计》题目集 第2章-5 求奇数分之一序列前N项和<br>
+    </p>
+    <p>
+        2.5 计算序列 1 + 1/3 + 1/5 + ... 的前N项之和。<br>
+        输入格式:<br>
+        输入在一行中给出一个正整数N。<br>
+        输出格式:<br>
+        在一行中按照“sum = S”的格式输出部分和的值 S，精确到小数点后6位。题目保证计算结果不超过双精度范围。<br>
+        代码对应的Python知识点：<br>
+        方法一：定循环与不定循环<br>
+        方法二：函数：自定义、内部<br>
+    </p>
 
+    <p>方法一：用 for 构建定循环：</p>
+    <pre>
+n=int(input())  # 代表输入一个正整数n
+b=0  # b代表每次所加的项
+s=0  # s 代表序列和，sum为内置函数，不可作为变量名
+#for 循环：
+for i in range(1, n+1):
+    # 当n是一个正整数时，i的取值将是所有1到n（包括1和n）的整数
+    b=1/(2*i-1)
+    s=s+b
+# 输出
+print("sum = {:.6f}".format(s))
+    </pre>
+
+    <p>方法二：用 while 构建不定循环：</p>
+    <pre>
+N=int(input())  # 代表输入一个正整数N
+b=0  # b代表每次所加的项
+s=0  # s 代表序列和sum，因为防止与序列和重复暂且表达为s
+# while 循环：
+i=1
+while i <= N:
+    s += 1 / (2 * i - 1)
+    i += 1
+# 输出
+print("sum = {:.6f}".format(s))
+    </pre>
+
+    <p>小测中出现过此题变体，要求用 ceil 函数返回其近似值（整数），解答摘录如下：</p>
+    <p>方法三（拓展）：构建自定义函数，用 while 构建不定循环，用 math.ceil 取整</p>
+    <pre>
+# ceil 函数属于 math 库，此处需引用：
+import math
+
+# 输入
+N = int(input())
+
+# 使用函数和 while 循环计算并打印结果
+# 函数：
+def sum(N):
+    sum = 0.0
+    i = 1
+    # while 循环
+    while i <= N:
+        sum += 1 / (2 * i - 1)
+        i += 1
+    # 使用 math.ceil 计算大于等于总和的最小整数
+    sum = math.ceil(sum)
+    return sum
+
+print(f"sum ≈ {sum(N)}")
+    </pre>
 </body>
 </html>
