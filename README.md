@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>我个人的python杂货铺</title>
 </head>
 <body>
 
