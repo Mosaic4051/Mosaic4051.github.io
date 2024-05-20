@@ -186,5 +186,134 @@ def sum(N):
 
 print(f"sum ≈ {sum(N)}")
     </pre>
+
+    <p>
+        三、作品名称：求交错序列前N项和，难度**<br>
+        数列描述：<br>
+        输入正整数N，求数列的前N项和，并保留三位小数<br>
+        题目来源：浙大版《Python 程序设计》题目集 第2章-6 求交错序列前N项和<br>
+    </p>
+    <p>
+        2.6 本题要求编写程序，计算交错序列 1-2/3+3/5-4/7+5/9-6/11+... 的前N项之和。<br>
+        输入格式:<br>
+        输入在一行中给出一个正整数N。<br>
+        输出格式:<br>
+        在一行中输出部分和的值，结果保留三位小数。<br>
+        代码对应的Python知识点：<br>
+        方法一、二：定循环、循环else结构<br>
+        方法二：列表<br>
+    </p>
+
+    <p>方法一：用 for 构建定循环；用 else 语句完成分类处理</p>
+    <pre>
+# 输入：
+n=int(input())
+a=0  # a代表数列和
+# 循环
+for i in range(1, n+1):
+    if i%2==1:
+        a = a + i/(2*i-1)
+    else:  # else结构
+        a = a - i/(2*i-1)
+# 输出，{:.3f} 代表要求的结果保留三位小数
+print("{:.3f}".format(a))
+    </pre>
+
+    <p>方法二：用 if/else 创建列表，列表求和</p>
+    <pre>
+# 输入
+n=int(input())
+# 创建列表
+alist=[i/(2*i-1) if i%2==1 else -i/(2*i-1) for i in range(1, n+1)]
+# 列表求和：
+result=sum(alist)
+# 输出
+print("{:.3f}".format(result))
+    </pre>
+
+     <p>
+        四、作品名称：求整数段和，难度**<br>
+        数列描述：<br>
+        给定两个整数A和B，输出从A到B的所有整数以及这些数的和。<br>
+        题目来源：浙大版《Python 程序设计》题目集 第2章-14 求整数段和<br>
+    </p>
+    <p>
+        2.14 给定两个整数A和B，输出从A到B的所有整数以及这些数的和。<br>
+        输入格式：<br>
+        输入在一行中给出2个整数A和B，其中−100≤A≤B≤100，其间以空格分隔。<br>
+        输出格式：<br>
+        首先顺序输出从A到B的所有整数，每5个数字占一行，每个数字占5个字符宽度，向右对齐。最后在一行中按Sum = X的格式输出全部数字的和X。<br>
+        代码对应的Python知识点：<br>
+        创建字符串列表<br>
+        定循环 for/else 结构<br>
+    </p>
+
+    <pre>
+# 输入两个整数，用 map(int, input().split()) 将空格分开成字符串列表，并将字符串转换为整数
+A, B = map(int, input().split())
+# 初始化两个变量，s 和 c 都为0。其中 s 将用于累加求和，c 用于计数，以便每五个数字打印一行
+s = c = 0
+# for 构建定循环，迭代到 A、B 之间每一个整数
+for i in range(A, B + 1):
+    print(f'{i:5d}', end='')
+    # 这行代码用于格式化打印整数 i，并且每个整数占用宽度为 5 的固定空间。end='' 参数确保数字间不会自动换行。
+    # 累加求和：
+    c += 1
+    if c == 5:
+        print()
+        c = 0
+    s += i
+# 处理最后一行不足 5 个的情况
+if c:
+    print()
+# 输出结果
+print(f'Sum = {s}')
+    </pre>
+     <p>
+        五、作品名称：统计素数并求和，难度***<br>
+        数列描述：<br>
+        本题要求统计给定整数M和N区间内素数的个数并对它们求和。<br>
+        题目来源：浙大版《Python 程序设计》题目集 第4章-2 统计素数并求和<br>
+    </p>
+    <p>
+        4.2 本题要求统计给定整数M和N区间内素数的个数并对它们求和。<br>
+        输入格式:<br>
+        输入在一行中给出两个正整数M和N（1≤M≤N≤500）。<br>
+        输出格式:<br>
+        在一行中顺序输出M和N区间内素数的个数以及它们的和，数字间以空格分隔。<br>
+        代码对应的Python知识点：<br>
+        导入数学库<br>
+        函数自定义<br>
+        for循环<br>
+    </p>
+
+    <pre>
+# 导入数学库
+import math
+
+# 自定义函数作为判别数字是否是素数的依据
+def is_prime(num):
+    sqrt_num = int(math.sqrt(num))
+    if num == 1:
+        return False
+    for i in range(2, sqrt_num + 1):
+        if num % i == 0:
+            return False
+    return True
+
+# 输入
+m, n = map(int, input().split())  # m, n 为输入值
+counts = 0  # counts 表示对素数的计数
+sum = 0  # 初始化求和变量
+
+# for 循环遍历 m~n 所有整数并判断是否为素数
+for i in range(m, n + 1):
+    if is_prime(i):
+        counts += 1
+        sum += i
+
+# 输出
+print(f"{counts} {sum}")
+    </pre>
 </body>
 </html>
